@@ -125,6 +125,9 @@
 #define X86_64_EXOP_MOVZX_8 0xB6
 #define X86_64_EXOP_MOVZX_16 0xB7
 
+#define X86_64_EXOP_MUL_8 0xF6
+#define X86_64_EXOP_MUL 0xF7
+
 #define X86_64_OP_PUSH_R64 0x50
 
 #define X86_64_OP_PUSH_SX_IMM8 0x6A
