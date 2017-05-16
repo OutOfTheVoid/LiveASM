@@ -16,6 +16,8 @@ enum LA_X86_64_R64_Indirect
 	kLA_X86_64_R64_Indirect_R9 = 9,
 	kLA_X86_64_R64_Indirect_R10 = 10,
 	kLA_X86_64_R64_Indirect_R11 = 11,
+	kLA_X86_64_R64_Indirect_R12 = 12,
+	kLA_X86_64_R64_Indirect_R13 = 13,
 	kLA_X86_64_R64_Indirect_R14 = 14,
 	kLA_X86_64_R64_Indirect_R15 = 15,
 	
@@ -37,7 +39,7 @@ enum LA_X86_64_R64_SIBIndex
 	kLA_X86_64_R64_SIBIndex_R9 = kLA_X86_64_R64_Indirect_R9,
 	kLA_X86_64_R64_SIBIndex_R10 = kLA_X86_64_R64_Indirect_R10,
 	kLA_X86_64_R64_SIBIndex_R11 = kLA_X86_64_R64_Indirect_R11,
-	kLA_X86_64_R64_SIBIndex_R13 = 13,
+	kLA_X86_64_R64_SIBIndex_R13 = kLA_X86_64_R64_Indirect_R13,
 	kLA_X86_64_R64_SIBIndex_R14 = kLA_X86_64_R64_Indirect_R14,
 	kLA_X86_64_R64_SIBIndex_R15 = kLA_X86_64_R64_Indirect_R15,
 	
@@ -59,7 +61,7 @@ enum LA_X86_64_R64_SIBBase
 	kLA_X86_64_R64_SIBBase_R9 = kLA_X86_64_R64_Indirect_R9,
 	kLA_X86_64_R64_SIBBase_R10 = kLA_X86_64_R64_Indirect_R10,
 	kLA_X86_64_R64_SIBBase_R11 = kLA_X86_64_R64_Indirect_R11,
-	kLA_X86_64_R64_SIBBase_R12 = 12,
+	kLA_X86_64_R64_SIBBase_R12 = kLA_X86_64_R64_Indirect_R12,
 	kLA_X86_64_R64_SIBBase_R14 = kLA_X86_64_R64_Indirect_R14,
 	kLA_X86_64_R64_SIBBase_R15 = kLA_X86_64_R64_Indirect_R15,
 	
@@ -255,8 +257,8 @@ typedef struct LA_X86_64_Operand_Struct
 	enum _E_AsIMM64Offset { AS_IMM64_OFFSET };
 	
 	enum _E_AsSIB { AS_SIB };
-	enum _E_AsSIBOffsetSIMM8 { AS_SIB_OFFSET_IMM8 };
-	enum _E_AsSIBOffsetSIMM32  { AS_SIB_OFFSET_IMM32 };
+	enum _E_AsSIBOffsetSIMM8 { AS_SIB_OFFSET_SIMM8 };
+	enum _E_AsSIBOffsetSIMM32  { AS_SIB_OFFSET_SIMM32 };
 	
 	enum Type
 	{
@@ -436,21 +438,21 @@ typedef struct LA_X86_64_Operand_Struct
 		
 	}
 	
-	inline LA_X86_64_Operand_Struct ( _E_AsSIBOffsetSIMM8 AS_SIB_OFFSET_IMM8, const LA_X86_64_SIB_R64 & SIB, int8_t Offset ):
+	inline LA_X86_64_Operand_Struct ( _E_AsSIBOffsetSIMM8 AS_SIB_OFFSET_SIMM8, const LA_X86_64_SIB_R64 & SIB, int8_t Offset ):
 		OperandType ( kType_SIB_Offset_SIMM8 ),
 		Value { SIBData_Struct { SIB, Offset } }
 	{
 		
-		(void) AS_SIB_OFFSET_IMM8;
+		(void) AS_SIB_OFFSET_SIMM8;
 		
 	}
 	
-	inline LA_X86_64_Operand_Struct ( _E_AsSIBOffsetSIMM32 AS_SIB_OFFSET_IMM32, const LA_X86_64_SIB_R64 & SIB, int32_t Offset ):
+	inline LA_X86_64_Operand_Struct ( _E_AsSIBOffsetSIMM32 AS_SIB_OFFSET_SIMM32, const LA_X86_64_SIB_R64 & SIB, int32_t Offset ):
 		OperandType ( kType_SIB_Offset_SIMM32 ),
 		Value { SIBData_Struct { SIB, Offset } }
 	{
 		
-		(void) AS_SIB_OFFSET_IMM32;
+		(void) AS_SIB_OFFSET_SIMM32;
 		
 	}
 	
@@ -916,6 +918,10 @@ void LA_X86_64_NearReturn ( LiveASM_CodeBuffer & Buffer );
 void LA_X86_64_NearReturn_PopIMM16 ( LiveASM_CodeBuffer & Buffer, uint16_t IMM16 );
 
 AutoOpResult LA_X86_64_NearReturn_Auto ( LiveASM_CodeBuffer & Buffer, uint16_t PopByteCount );
+
+//======================================[NOP]======================================//
+
+void LA_X86_64_Noop ( LiveASM_CodeBuffer & Buffer );
 
 
 #endif

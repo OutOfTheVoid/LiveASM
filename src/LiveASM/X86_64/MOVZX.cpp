@@ -204,6 +204,8 @@ void LA_X86_64_MoveZeroExtended_Indirect16_OffsetSIMM32_To_R64 ( LiveASM_CodeBuf
 	
 }
 
+// TODO: REXFlags for SIB
+
 void LA_X86_64_MoveZeroExtended_Indirect8_SIB_R64_To_R16 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R16 Destination, const LA_X86_64_SIB_R64 & Source )
 {
 	

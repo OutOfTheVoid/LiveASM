@@ -1178,7 +1178,7 @@ inline void _LA_X86_64_WriteModRM_Indirect_Offset32_REG_Segment_RM_Indirect_SIB 
 inline void _LA_X86_64_WriteSIB64 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_SIBScale IndexScale, LA_X86_64_R64_SIBIndex IndexRegister, LA_X86_64_R64_SIBBase BaseRegister )
 {
 	
-	Buffer.push_back ( ( _LA_X86_64_SIBScaleToIndex2 ( IndexScale ) << 6 ) | ( IndexRegister << 3 ) | BaseRegister );
+	Buffer.push_back ( ( _LA_X86_64_SIBScaleToIndex2 ( IndexScale ) << 6 ) | ( _LA_X86_64_R64ToIndex3 ( static_cast <LA_X86_64_R64> ( IndexRegister ) ) << 3 ) | _LA_X86_64_R64ToIndex3 ( static_cast <LA_X86_64_R64> ( BaseRegister ) ) );
 	
 }
 
