@@ -1185,7 +1185,8 @@ inline void _LA_X86_64_WriteSIB64 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_SIBSc
 inline void _LA_X86_64_WriteREX ( LiveASM_CodeBuffer & Buffer, LA_X86_64_REXFlag Flags )
 {
 	
-	Buffer.push_back ( X86_64_OPPREFIX_REX_FIXED | ( ( ( Flags & kLA_X86_64_REXFlag_R ) != 0 ) ? X86_64_OPPREFIX_REX_R : 0 ) | ( ( ( Flags & kLA_X86_64_REXFlag_B ) != 0 ) ? X86_64_OPPREFIX_REX_B : 0 ) | ( ( ( Flags & kLA_X86_64_REXFlag_X ) != 0 ) ? X86_64_OPPREFIX_REX_X : 0 ) );
+	if ( Flags != 0 )
+		Buffer.push_back ( X86_64_OPPREFIX_REX_FIXED | ( ( ( Flags & kLA_X86_64_REXFlag_R ) != 0 ) ? X86_64_OPPREFIX_REX_R : 0 ) | ( ( ( Flags & kLA_X86_64_REXFlag_B ) != 0 ) ? X86_64_OPPREFIX_REX_B : 0 ) | ( ( ( Flags & kLA_X86_64_REXFlag_X ) != 0 ) ? X86_64_OPPREFIX_REX_X : 0 ) );
 	
 }
 

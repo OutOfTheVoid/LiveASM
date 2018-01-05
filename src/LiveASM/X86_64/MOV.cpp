@@ -598,11 +598,7 @@ void LA_X86_64_Move_Indirect_OffsetSIMM32_To_Segment ( LiveASM_CodeBuffer & Buff
 void LA_X86_64_Move_Indirect_SIB_R64_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_SEG_REGMEM );
 	_LA_X86_64_WriteModRM_Indirect_REG_Segment_RM_Indirect_SIB ( Buffer, Destination );
 	_LA_X86_64_WriteSIB64 ( Buffer, SourceIndirectSIB.IndexScale, SourceIndirectSIB.IndexRegister, SourceIndirectSIB.BaseRegister );
@@ -612,11 +608,7 @@ void LA_X86_64_Move_Indirect_SIB_R64_To_Segment ( LiveASM_CodeBuffer & Buffer, L
 void LA_X86_64_Move_Indirect_OffsetSIMM8_SIB_R64_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB, int8_t Offset )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_SEG_REGMEM );
 	_LA_X86_64_WriteModRM_Indirect_Offset8_REG_Segment_RM_Indirect_SIB ( Buffer, Destination );
 	_LA_X86_64_WriteSIB64 ( Buffer, SourceIndirectSIB.IndexScale, SourceIndirectSIB.IndexRegister, SourceIndirectSIB.BaseRegister );
@@ -627,11 +619,7 @@ void LA_X86_64_Move_Indirect_OffsetSIMM8_SIB_R64_To_Segment ( LiveASM_CodeBuffer
 void LA_X86_64_Move_Indirect_OffsetSIMM32_SIB_R64_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB, int32_t Offset )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( SourceIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_SEG_REGMEM );
 	_LA_X86_64_WriteModRM_Indirect_Offset32_REG_Segment_RM_Indirect_SIB ( Buffer, Destination );
 	_LA_X86_64_WriteSIB64 ( Buffer, SourceIndirectSIB.IndexScale, SourceIndirectSIB.IndexRegister, SourceIndirectSIB.BaseRegister );
@@ -694,11 +682,7 @@ void LA_X86_64_Move_Segment_To_Indirect_OffsetSIMM32 ( LiveASM_CodeBuffer & Buff
 void LA_X86_64_Move_Segment_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, LA_X86_64_Segment Source )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_SEG );
 	_LA_X86_64_WriteModRM_Indirect_REG_Segment_RM_Indirect_SIB ( Buffer, Source );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -708,11 +692,7 @@ void LA_X86_64_Move_Segment_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, c
 void LA_X86_64_Move_Segment_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int8_t Offset, LA_X86_64_Segment Source )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_SEG );
 	_LA_X86_64_WriteModRM_Indirect_Offset8_REG_Segment_RM_Indirect_SIB ( Buffer, Source );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -723,11 +703,7 @@ void LA_X86_64_Move_Segment_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer
 void LA_X86_64_Move_Segment_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, LA_X86_64_Segment Source )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_SEG );
 	_LA_X86_64_WriteModRM_Indirect_Offset32_REG_Segment_RM_Indirect_SIB ( Buffer, Source );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1007,11 +983,7 @@ void LA_X86_64_Move_IMM32_SX64_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer
 void LA_X86_64_Move_IMM32_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, uint32_t IMM32 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1024,11 +996,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, con
 	
 	Buffer.push_back ( X86_64_OPPREFIX_OPSIZE_OVR );
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1039,11 +1007,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, con
 void LA_X86_64_Move_IMM8_To_Indirect_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, uint8_t IMM8 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM_8 );
 	_LA_X86_64_WriteModRM_Indirect_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1066,11 +1030,7 @@ void LA_X86_64_Move_IMM32_SX64_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuf
 void LA_X86_64_Move_IMM32_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int8_t Offset, uint32_t IMM32 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Offset8_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1084,11 +1044,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer &
 	
 	Buffer.push_back ( X86_64_OPPREFIX_OPSIZE_OVR );
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Offset8_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1100,11 +1056,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer &
 void LA_X86_64_Move_IMM8_To_Indirect_OffsetSIMM8_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int8_t Offset, uint8_t IMM8 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM_8 );
 	_LA_X86_64_WriteModRM_Indirect_Offset8_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1128,11 +1080,7 @@ void LA_X86_64_Move_IMM32_SX64_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBu
 void LA_X86_64_Move_IMM32_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, uint32_t IMM32 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Offset32_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1145,12 +1093,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer 
 {
 	
 	Buffer.push_back ( X86_64_OPPREFIX_OPSIZE_OVR );
-	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM );
 	_LA_X86_64_WriteModRM_Indirect_Offset32_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );
@@ -1162,11 +1105,7 @@ void LA_X86_64_Move_IMM16_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer 
 void LA_X86_64_Move_IMM8_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, uint8_t IMM8 )
 {
 	
-	LA_X86_64_REXFlag REXFlags = ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 );
-	
-	if ( REXFlags != 0 )
-		_LA_X86_64_WriteREX ( Buffer, REXFlags );
-	
+	_LA_X86_64_WriteREX ( Buffer, ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.IndexRegister ) ) ? kLA_X86_64_REXFlag_X : 0 ) | ( _LA_X86_64_R64IsGPR ( static_cast <LA_X86_64_R64> ( DestinationIndirectSIB.BaseRegister ) ) ? kLA_X86_64_REXFlag_B : 0 ) );
 	Buffer.push_back ( X86_64_OP_MOV_REGMEM_IMM_8 );
 	_LA_X86_64_WriteModRM_Indirect_Offset32_Digit_SIB ( Buffer, 0 );
 	_LA_X86_64_WriteSIB64 ( Buffer, DestinationIndirectSIB.IndexScale, DestinationIndirectSIB.IndexRegister, DestinationIndirectSIB.BaseRegister );

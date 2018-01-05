@@ -39,6 +39,7 @@ enum LA_X86_64_R64_SIBIndex
 	kLA_X86_64_R64_SIBIndex_R9 = kLA_X86_64_R64_Indirect_R9,
 	kLA_X86_64_R64_SIBIndex_R10 = kLA_X86_64_R64_Indirect_R10,
 	kLA_X86_64_R64_SIBIndex_R11 = kLA_X86_64_R64_Indirect_R11,
+	kLA_X86_64_R64_SIBIndex_R12 = kLA_X86_64_R64_Indirect_R12,
 	kLA_X86_64_R64_SIBIndex_R13 = kLA_X86_64_R64_Indirect_R13,
 	kLA_X86_64_R64_SIBIndex_R14 = kLA_X86_64_R64_Indirect_R14,
 	kLA_X86_64_R64_SIBIndex_R15 = kLA_X86_64_R64_Indirect_R15,
@@ -661,6 +662,7 @@ void LA_X86_64_Move_Indirect_OffsetSIMM32_SIB_R64_To_R64 ( LiveASM_CodeBuffer & 
 void LA_X86_64_Move_Indirect_OffsetSIMM32_SIB_R64_To_R32 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R32 Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB, int32_t Offset );
 void LA_X86_64_Move_Indirect_OffsetSIMM32_SIB_R64_To_R16 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R16 Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB, int32_t Offset );
 void LA_X86_64_Move_Indirect_OffsetSIMM32_SIB_R64_To_R8 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R8 Destination, const LA_X86_64_SIB_R64 & SourceIndirectSIB, int32_t Offset );
+
 void LA_X86_64_Move_R64_To_Indirect ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R64_Indirect DestinationIndirect , LA_X86_64_R64 Source );
 void LA_X86_64_Move_R32_To_Indirect ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R64_Indirect DestinationIndirect, LA_X86_64_R32 Source );
 void LA_X86_64_Move_R16_To_Indirect ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R64_Indirect DestinationIndirect, LA_X86_64_R16 Source );
@@ -685,6 +687,7 @@ void LA_X86_64_Move_R64_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & 
 void LA_X86_64_Move_R32_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, LA_X86_64_R32 Source );
 void LA_X86_64_Move_R16_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, LA_X86_64_R16 Source );
 void LA_X86_64_Move_R8_To_Indirect_OffsetSIMM32_SIB_R64 ( LiveASM_CodeBuffer & Buffer, const LA_X86_64_SIB_R64 & DestinationIndirectSIB, int32_t Offset, LA_X86_64_R8 Source );
+
 void LA_X86_64_Move_R64_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, LA_X86_64_R64 Source );
 void LA_X86_64_Move_R32_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, LA_X86_64_R32 Source );
 void LA_X86_64_Move_R16_To_Segment ( LiveASM_CodeBuffer & Buffer, LA_X86_64_Segment Destination, LA_X86_64_R16 Source );
@@ -711,6 +714,7 @@ void LA_X86_64_Move_RAX_To_Offset_IMM64 ( LiveASM_CodeBuffer & Buffer, uint64_t 
 void LA_X86_64_Move_EAX_To_Offset_IMM64 ( LiveASM_CodeBuffer & Buffer, uint64_t SourceOffset );
 void LA_X86_64_Move_AX_To_Offset_IMM64 ( LiveASM_CodeBuffer & Buffer, uint64_t SourceOffset );
 void LA_X86_64_Move_AL_To_Offset_IMM64 ( LiveASM_CodeBuffer & Buffer, uint64_t SourceOffset );
+
 void LA_X86_64_Move_IMM64_To_R64 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R64 Register, uint64_t IMM64 );
 void LA_X86_64_Move_SIMM32_SX_To_R64 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R64 Register, int32_t SIMM32 );
 void LA_X86_64_Move_IMM32_To_R32 ( LiveASM_CodeBuffer & Buffer, LA_X86_64_R32 Register, uint32_t IMM32 );
